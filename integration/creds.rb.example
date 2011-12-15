@@ -1,0 +1,13 @@
+################################################################################
+# Example creds.rb for running the integration tests
+#
+# WARNING: The integration tests WILL contact the real
+# manage.opscode.com, which WILL reset your user key and org validation
+# key. It's best to setup a test account for this.
+################################################################################
+
+credentials do |c|
+  c.user     = "USERNAME"
+  c.org      = "ORG"
+  c.password = "PASSWORD"
+end
