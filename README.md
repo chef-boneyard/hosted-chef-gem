@@ -9,7 +9,7 @@ This script currently resets both your user API key and your
 Organization's validation key, so it's only recommended for new users
 with freshly created organizations. If that's you, run:
 
-    gem install hosted chef
+    gem install hosted-chef
     hosted-chef -u USERNAME -o ORGANIZATION
     # enter your password at the prompt.
 
