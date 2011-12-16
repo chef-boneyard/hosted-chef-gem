@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'hosted-chef'
+rescue LoadError
+  $:.unshift(File.expand_path("../../lib", __FILE__))
+  require 'hosted-chef'
+end
+
+HostedChef::Controller.new.run
+
