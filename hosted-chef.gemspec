@@ -2,7 +2,7 @@ $:.unshift(File.dirname(__FILE__) + '/lib')
 require 'hosted-chef/version'
 
 Gem::Specification.new do |s|
-  s.name = 'mixlib-shellout'
+  s.name = 'hosted-chef'
   s.version = HostedChef::VERSION
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email = "info@opscode.com"
   s.homepage = "http://wiki.opscode.com/"
 
-  s.add_runtime_dependency "restclient"
+  s.add_runtime_dependency "rest-client"
   s.add_runtime_dependency "highline"
 
   %w(rspec).each { |gem| s.add_development_dependency gem }
