@@ -4,16 +4,16 @@
 [Opscode Management Console](https://manage.opscode.com) and installs
 them in the right spot on your system.
 
-## Coming Soon ##
-This project is still in preliminary development. Once it ships, you'll
-be able to `gem install hosted-chef` and run a script to configure your
-system with your Hosted Chef API keys.
+## Usage ##
+This script currently resets both your user API key and your
+Organization's validation key, so it's only recommended for new users
+with freshly created organizations. If that's you, run:
+
+    gem install hosted chef
+    hosted-chef -u USERNAME -o ORGANIZATION
+    # enter your password at the prompt.
 
 ## Who Should Use This? ##
-**DISCLAIMER:** This project is in early stages, so actually no one
-should use it yet. The discussion below will become true once the code
-is ready.
-
 This utility is designed to reduce friction for users new to Opscode's
 Hosted Chef. If you're a Chef pro, or joining an existing Hosted Chef
 organization, or running your own Chef server, there's likely little
