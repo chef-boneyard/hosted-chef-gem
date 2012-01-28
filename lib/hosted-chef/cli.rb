@@ -66,19 +66,14 @@ module HostedChef
     end
 
     def validate_orgname
-      page = RestClient.get("https://manage.opscode.com/organizations/#{orgname}", :cookies => @api_client.login_cookies)
+      page = RestClient.get("https://www.opscode.com/account/organizations/#{orgname}/plan", :cookies => @api_client.login_cookies)
       # TODO: use actual HTTP response codes.
-      if page =~ /not found/i
-        STDERR.puts "The organization '#{orgname}' does not exist. Check your"\
-          " spelling, or visit https://manage.opscode.com/organizations to create your organization"
-        exit 1
-      elsif page =~ /permission denied/i
-        STDERR.puts "You are not associated with the organization '#{orgname}'"\
-          " or you do not have sufficient privileges to download its validator"\
-          " key. Ask an administrator of this org to invite you."
-        exit 1
-      end
       puts "* Organization name '#{orgname}' is correct"
+    rescue RestClient::ResourceNotFound
+      STDERR.puts "The organization '#{orgname}' does not exist or you dont "\
+        "have permission to access it. Check your spelling, or visit "\
+        "https://manage.opscode.com/organizations to create your organization"
+      exit 1
     end
   end
 
