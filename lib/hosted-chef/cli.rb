@@ -6,26 +6,38 @@ module HostedChef
     attr_writer :password
 
     def password
+      die "No password specified" if !@password && no_input
       @password ||= HighLine.new.ask("Your Hosted Chef password: ") {|q| q.echo = "*"}
     end
 
     attr_writer :username
 
     def username
+      die "No username specified" if !@username && no_input
       @username ||= HighLine.new.ask("Your Hosted Chef username? ")
     end
 
     attr_writer :orgname
 
     def orgname
+      die "No orgname specified" if !@orgname && no_input
       @orgname ||= HighLine.new.ask("Your Hosted Chef organization? ")
     end
+
+    attr_accessor :no_input
+
+    attr_accessor :folder
 
     # force evaluation of options
     def ask_for_missing_opts
       username
       password
       orgname
+    end
+
+    def die(msg)
+      STDERR.puts msg
+      exit 1
     end
 
   end
@@ -103,6 +115,14 @@ module HostedChef
 
         o.on('-o', "--organization ORGANIZATION", "Your Hosted Chef Organization") do |orgname|
           options.orgname = orgname
+        end
+
+        o.on("-n", "--no-input", "Do not ask for confirmation") do
+          options.no_input = true
+        end
+
+        o.on("-f", "--folder FOLDER", "Folder to write to") do |folder|
+          options.folder = folder
         end
 
         o.on('-h', "--help") do

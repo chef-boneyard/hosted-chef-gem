@@ -27,7 +27,7 @@ Your config will be created in #{@config_installer.install_dir}
 
 WELCOME
 
-      unless HighLine.new.agree("Ready to get started? (yes/no): ")
+      unless @options.no_input || HighLine.new.agree("Ready to get started? (yes/no): ")
         STDERR.puts "goodbye."
         exit 1
       end

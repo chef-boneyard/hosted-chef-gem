@@ -52,7 +52,9 @@ module HostedChef
       home_dot_chef = File.expand_path("~/.chef")
       cwd_dot_chef  = File.expand_path(".chef")
 
-      if ENV['USER'] && !File.exist?(home_dot_chef)
+      if @options.folder
+        [@options.folder, :non_default]
+      elsif ENV['USER'] && !File.exist?(home_dot_chef)
         [home_dot_chef, :default]
       elsif !File.exist?(cwd_dot_chef)
         [cwd_dot_chef, :non_default]
